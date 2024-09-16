@@ -1,0 +1,36 @@
+﻿<Window x:Class="Lista_de_Tarefas.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="Gerenciador de Tarefas" Height="400" Width="600"
+        Background="{DynamicResource BackgroundBrush}">
+    <Grid>
+        <StackPanel Margin="10">
+            <xctk:WatermarkTextBox Name="txtTitulo" Width="300" Margin="0,0,0,10" Watermark="Título da Tarefa"/>
+            <xctk:WatermarkTextBox Name="txtDescricao" Width="300" Margin="0,0,0,10" Watermark="Descrição da Tarefa (opcional)"/>
+            <DatePicker Name="dpDataConclusao" Width="300" Margin="0,0,0,10"/>
+            <Button Content="Adicionar Tarefa" Width="150" Click="AdicionarTarefa_Click"/>
+            <Button Content="Remover Tarefa" Width="150" Margin="0,10,0,0" Click="RemoverTarefa_Click"/>
+            <Button Content="Alternar Tema" Click="AlternarTema_Click" Width="150" Margin="10"/>
+
+
+            <ListBox Name="lstTarefas" Margin="0,10,0,0" SelectionMode="Single">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Titulo}" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Descricao}" TextWrapping="Wrap"/>
+                            
+                            <TextBlock Text="{Binding DataConclusao, StringFormat='{}{0:dd/MM/yyyy}'}"/>
+                            <!-- Data formatada acima -->
+                            <CheckBox IsChecked="{Binding Concluida}" Content="Concluída"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+
+            <TextBlock Name="txtMensagem" Margin="0,10,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>
